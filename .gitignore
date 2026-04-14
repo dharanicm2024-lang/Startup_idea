@@ -1,0 +1,16 @@
+# IDEs and Editors
+.idea/
+.vscode/
+
+# Build artifacts
+backend/target/
+frontend/dist/
+node_modules/
+.DS_Store
+
+# Security: Firebase Key (CRITICAL)
+backend/src/main/resources/serviceAccountKey.json
+*.json.key
+
+# Logs
+*.log

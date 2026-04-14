@@ -1,0 +1,26 @@
+services:
+  # Backend: Spring Boot Web Service
+  - type: web
+    name: task-manager-backend
+    env: java
+    buildCommand: cd backend && mvn clean package -DskipTests
+    startCommand: java -jar backend/target/notetaker-0.0.1-SNAPSHOT.jar
+    region: oregon
+    envVars:
+      - key: SERVER_PORT
+        value: 8085
+      - key: FIREBASE_CONFIG_JSON
+        sync: false
+
+  # Frontend: Vite Static Site
+  - type: static
+    name: task-manager-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishDir: frontend/dist
+    region: oregon
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://task-manager-backend.onrender.com # Fallback or specific URL
+      - key: VITE_WS_BASE_URL
+        value: https://task-manager-backend.onrender.com
