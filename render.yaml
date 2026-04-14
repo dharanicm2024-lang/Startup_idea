@@ -1,10 +1,9 @@
 services:
-  # Backend: Spring Boot Web Service
+  # Backend: Spring Boot Docker Service
   - type: web
     name: task-manager-backend
-    runtime: java
-    buildCommand: cd backend && mvn clean package -DskipTests
-    startCommand: java -jar backend/target/notetaker-0.0.1-SNAPSHOT.jar
+    runtime: docker
+    dockerContext: ./backend
     region: oregon
     envVars:
       - key: SERVER_PORT
@@ -18,7 +17,6 @@ services:
     runtime: static
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/dist
-    region: oregon
     envVars:
       - key: VITE_API_BASE_URL
         value: https://task-manager-backend.onrender.com
