@@ -4,6 +4,7 @@ services:
     name: task-manager-backend
     runtime: docker
     dockerContext: ./backend
+    plan: free
     region: oregon
     envVars:
       - key: SERVER_PORT
@@ -15,6 +16,7 @@ services:
   - type: web
     name: task-manager-frontend
     runtime: static
+    plan: free
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/dist
     envVars:
