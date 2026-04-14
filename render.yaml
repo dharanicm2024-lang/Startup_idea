@@ -17,7 +17,7 @@ services:
     name: task-manager-frontend
     runtime: static
     buildCommand: cd frontend && npm install && npm run build
-    staticPublishDir: frontend/dist
+    staticPublishPath: frontend/dist
     region: oregon
     envVars:
       - key: VITE_API_BASE_URL
